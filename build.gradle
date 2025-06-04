@@ -1,8 +1,9 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
-group = 'ru.clevertec'
+group = 'by.clevertec'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -10,10 +11,26 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+
+    implementation 'org.mapstruct:mapstruct:1.6.2'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
 }
 
 test {
     useJUnitPlatform()
+}
+
+war {
+    archiveFileName = 'servlet.war'
 }
